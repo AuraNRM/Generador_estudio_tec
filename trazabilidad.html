@@ -34,6 +34,7 @@
       <nav class="col-md-3 col-lg-2 d-md-block bg-success sidebar py-4 border-end border-dark" style="min-height: 100vh;">
         <div class="nav flex-column nav-pills" id="menuLateral" role="tablist" aria-orientation="vertical">
           <button class="nav-link text-white active" id="tab-que-es" data-bs-toggle="pill" data-bs-target="#contenido-que-es" type="button" role="tab">¿Qué es?</button>
+          <button class="nav-link text-white" id="tab-codigo" data-bs-toggle="pill" data-bs-target="#contenido-cuadro" type="button" role="tab">Cuadro de Trazabilidad</button>
           <button class="nav-link text-white" id="tab-codigo" data-bs-toggle="pill" data-bs-target="#contenido-codigo" type="button" role="tab">Código de barras</button>
           <button class="nav-link text-white" id="tab-lote" data-bs-toggle="pill" data-bs-target="#contenido-lote" type="button" role="tab">Lote</button>
           <button class="nav-link text-white" id="tab-qr" data-bs-toggle="pill" data-bs-target="#contenido-qr" type="button" role="tab">QR</button>
@@ -70,9 +71,98 @@
                 <br>
                 🔹 Responsables del seguimiento en cada etapa.</p>
           </div>
+
           <div class="tab-pane fade" id="contenido-cuadro" role="tabpanel">
             <h3>Cuadro de Trazabilidad</h3>
-            <p>insertar formulario de la trazabilidad, antes del proceso, durante el proceso, despues del proceso</p>
+            <p>Este cuadro permite a los estudiantes redactar textos relacionados con las etapas del proceso: antes, durante y después.</p>
+            <div class="container mt-5">
+              <form id="trazabilidadForm">
+                <div class="row mb-3">
+                  <label for="antes" class="col-sm-2 col-form-label">Antes del proceso</label>
+                  <div class="col-sm-8">
+                    <textarea class="form-control" id="antes" rows="3" placeholder="Escribe aquí..."></textarea>
+                  </div>
+                  <div class="col-sm-2">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAntes">Ayuda</button>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="durante" class="col-sm-2 col-form-label">Durante el proceso</label>
+                  <div class="col-sm-8">
+                    <textarea class="form-control" id="durante" rows="3" placeholder="Escribe aquí..."></textarea>
+                  </div>
+                  <div class="col-sm-2">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDurante">Ayuda</button>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="despues" class="col-sm-2 col-form-label">Después del proceso</label>
+                  <div class="col-sm-8">
+                    <textarea class="form-control" id="despues" rows="3" placeholder="Escribe aquí..."></textarea>
+                  </div>
+                  <div class="col-sm-2">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDespues">Ayuda</button>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <button type="button" class="btn btn-success" onclick="exportarExcel()">Descargar como Excel</button>
+                </div>
+              </form>
+            </div>
+          
+            <!-- Modal Antes -->
+            <div class="modal fade" id="modalAntes" tabindex="-1" aria-labelledby="modalAntesLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalAntesLabel">Ejemplo - Antes del proceso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Ejemplo: "Antes de iniciar el experimento, se deben reunir todos los materiales necesarios y revisar el procedimiento."</p>
+                    <div class="ratio ratio-16x9">
+                      <iframe src="https://www.youtube.com/embed/VIDEO_ID_ANTES" title="Video de ejemplo - Antes del proceso" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Modal Durante -->
+            <div class="modal fade" id="modalDurante" tabindex="-1" aria-labelledby="modalDuranteLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalDuranteLabel">Ejemplo - Durante el proceso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Ejemplo: "Durante el experimento, se debe observar cuidadosamente y registrar cualquier cambio que ocurra."</p>
+                    <div class="ratio ratio-16x9">
+                      <iframe src="https://www.youtube.com/embed/VIDEO_ID_DURANTE" title="Video de ejemplo - Durante el proceso" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Modal Después -->
+            <div class="modal fade" id="modalDespues" tabindex="-1" aria-labelledby="modalDespuesLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalDespuesLabel">Ejemplo - Después del proceso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Ejemplo: "Después de finalizar el experimento, se deben analizar los resultados y discutir las conclusiones."</p>
+                    <div class="ratio ratio-16x9">
+                      <iframe src="https://www.youtube.com/embed/VIDEO_ID_DESPUES" title="Video de ejemplo - Después del proceso" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!--Codigos de barras-->
@@ -261,8 +351,14 @@
 <script src="js/jszip.min.js"></script>
 <script src="js/FileSaver.min.js"></script>
 <script src="js/sellos.js"></script>
+<script src="js/exportarcuadrotraza.js"></script>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@0.17.0/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+
+
 </body>
 </html>
