@@ -1,0 +1,24 @@
+function exportarExcel() {
+  // Capturamos los valores del formulario
+  const nombre = document.getElementById("nombre").value;
+  const correo = document.getElementById("correo").value;
+  const mensaje = document.getElementById("mensaje").value;
+
+  // Creamos los datos como arreglo de arreglos (Aoa)
+  const datos = [
+    ["Campo", "Valor"],
+    ["Nombre", nombre],
+    ["Correo", correo],
+    ["Mensaje", mensaje]
+  ];
+
+  // Convertimos los datos a una hoja
+  const hoja = XLSX.utils.aoa_to_sheet(datos);
+
+  // Creamos un libro y añadimos la hoja
+  const libro = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(libro, hoja, "Formulario");
+
+  // Guardamos el archivo
+  XLSX.writeFile(libro, "formulario.xlsx");
+}

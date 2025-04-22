@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario Exportable</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="text-white text-center py-3">
+    <h1>Generador Estudio Técnico</h1>
+  </header>
+
+  <!-- Menú de navegación -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid justify-content-center">
+      <div class="navbar-nav">
+        <a class="nav-link" href="index.html">Inicio</a>
+        <a class="nav-link" href="ficha_tecnica.html">Ficha Técnica</a>
+        <a class="nav-link" href="pcc.html">Puntos Criticos de Control</a>
+        <a class="nav-link" href="diagrama_flujo.html">Diagrama de flujo</a>
+        <a class="nav-link active" href="trazabilidad.html">Trazabilidad</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      
+      <!-- Menú vertical con color y borde -->
+      <nav class="col-md-3 col-lg-2 d-md-block bg-success sidebar py-4 border-end border-dark" style="min-height: 100vh;">
+        <div class="nav flex-column nav-pills" id="menuLateral" role="tablist" aria-orientation="vertical">
+          <button class="nav-link text-white active" id="tab-que-es" data-bs-toggle="pill" data-bs-target="#contenido-que-es" type="button" role="tab">¿Qué es?</button>
+          <button class="nav-link text-white" id="tab-codigo" data-bs-toggle="pill" data-bs-target="#contenido-codigo" type="button" role="tab">Código de barras</button>
+          <button class="nav-link text-white" id="tab-lote" data-bs-toggle="pill" data-bs-target="#contenido-lote" type="button" role="tab">Lote</button>
+          <button class="nav-link text-white" id="tab-qr" data-bs-toggle="pill" data-bs-target="#contenido-qr" type="button" role="tab">QR</button>
+          <button class="nav-link text-white" id="tab-sellos" data-bs-toggle="pill" data-bs-target="#contenido-sellos" type="button" role="tab">Sellos de advertencia</button>
+        </div>
+      </nav>
+
+      <!-- Panel de contenido con borde -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 border-start border-dark">
+        <div class="tab-content" id="panelContenido">
+          <div class="tab-pane fade show active" id="contenido-que-es" role="tabpanel">
+            <h3>Trazabilidad</h3>
+            <p>En el estudio técnico de un proyecto de agroindustria alimentaria, la trazabilidad se refiere a la capacidad de seguir el recorrido de un alimento, desde su origen hasta el consumidor final, registrando cada etapa del proceso: producción, transformación, empaque, almacenamiento, distribución y comercialización.</p>
+            <p>📌 ¿Por qué es importante incluir la trazabilidad en el estudio técnico?
+              Porque permite:
+              <br><br>
+              🔹 Garantizar la seguridad alimentaria: En caso de detectarse un problema (como contaminación o presencia de alérgenos), se puede identificar y retirar rápidamente el lote afectado.
+              <br>
+              🔹 Cumplir con normativas sanitarias y de calidad, tanto nacionales como internacionales.
+              <br>
+              🔹 Mejorar la confianza del consumidor, demostrando transparencia en los procesos.
+              <br>
+              🔹 Controlar y optimizar procesos internos, al poder identificar puntos críticos o ineficiencias.</p>
+              <p>📊 ¿Qué se debe incluir sobre trazabilidad en el estudio técnico?
+                Dentro del estudio técnico, la trazabilidad se describe como parte del proceso productivo y del sistema de control de calidad. Puedes incluir:
+                <br><br>
+                🔹 Sistema de identificación de lotes (códigos, fechas, proveedores, ubicación).
+                <br>
+                🔹 Registros por etapas: materias primas (origen, fecha), procesos (tipo, tiempo, condiciones), producto terminado (fecha de empaque, número de lote).
+                <br>
+                🔹 Método de registro: manual o digital (uso de software, códigos QR, etiquetas RFID).
+                <br>
+                🔹 Planes de contingencia ante incidentes o fallas en la cadena.
+                <br>
+                🔹 Responsables del seguimiento en cada etapa.</p>
+          </div>
+          <div class="tab-pane fade" id="contenido-cuadro" role="tabpanel">
+            <h3>Cuadro de Trazabilidad</h3>
+            <p>insertar formulario de la trazabilidad, antes del proceso, durante el proceso, despues del proceso</p>
+          </div>
+
+          <!--Codigos de barras-->
+          <div class="tab-pane fade" id="contenido-codigo" role="tabpanel">
+            <h3>Código de barras</h3>
+            <p>El código de barras es una representación gráfica de datos que puede ser leída por escáneres para identificar productos.</p>
+            <iframe src="https://www.labeljoy.com/generar-codigo-de-barras-gratis/" width="90%" height="400" frameborder="0"></iframe>
+          </div>
+
+          <!--Menu del lote-->
+          <div class="tab-pane fade" id="contenido-lote" role="tabpanel">
+            <h3>Lote</h3>
+            <p>El número de lote permite rastrear la fabricación y distribución de productos, siendo útil en control de calidad y trazabilidad.</p>
+            <div class="container mt-5">
+
+              <h3 class="mt-5">Estructura de Lote</h3>
+      
+              <table class="table table-bordered">
+                  <thead class="table-light">
+                      <tr>
+                          <th>Elemento del código</th>
+                          <th>Descripción</th>
+                          <th>Ejemplo</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>Tipo de producto</td>
+                          <td>Abreviatura o código del producto</td>
+                          <td>MER (mermelada)</td>
+                      </tr>
+                      <tr>
+                          <td>Fecha de producción</td>
+                          <td>Año-mes-día o día juliano</td>
+                          <td>240420 o 24111</td>
+                      </tr>
+                      <tr>
+                          <td>Turno o jornada</td>
+                          <td>Opcional: si hay turnos</td>
+                          <td>T1 (mañana)</td>
+                      </tr>
+                      <tr>
+                          <td>N° de lote del día</td>
+                          <td>Secuencia de lotes por jornada</td>
+                          <td>L01</td>
+                      </tr>
+                  </tbody>
+              </table>
+      
+              <h3 class="mt-4">Ejemplos de Código de Lote</h3>
+              <ul>
+                  <li><strong>MER-240420-L01</strong>: Mermelada del 20 de abril, primer lote del día.</li>
+                  <li><strong>YOG-24111-T2-L03</strong>: Yogur del día 111 (20 abril), turno tarde, tercer lote.</li>
+                  <li><strong>JUG-240420-P01-L02</strong>: Jugo, proveedor 01, segundo lote del día.</li>
+              </ul>
+      
+              <h3 class="mt-5">Estructura mínima sugerida</h3>
+              <p><code>[PRODUCTO]-[FECHA]-[LOTE]</code></p>
+              <p>Ejemplo: <strong>MER-250421-L01</strong></p>
+      
+              <h3 class="mt-5">Registro de Lote</h3>
+              <table class="table table-striped">
+                  <thead class="table-dark">
+                      <tr>
+                          <th>Código de Lote</th>
+                          <th>Producto</th>
+                          <th>Fecha</th>
+                          <th>Turno</th>
+                          <th>Materia Prima</th>
+                          <th>Responsable</th>
+                          <th>Observaciones</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>MER-250421-L01</td>
+                          <td>Mermelada de fresa</td>
+                          <td>2025-04-21</td>
+                          <td>Mañana</td>
+                          <td>Fresas (Parcela 3)</td>
+                          <td>Juan Ríos</td>
+                          <td>Todo en condiciones normales</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <p> Por favor genera una estructura para los lotes de tu producto que sean secuenciales e identifiquen las producciones, guiate por los ejemplos de arriba y socializalo con la docente Nelsy! </p>
+          </div>
+          <div class="tab-pane fade" id="contenido-qr" role="tabpanel">
+            <h3>QR</h3>
+            <p>Usa la herramienta a continuación para generar tu propio código QR. Ingresa el usuario del instagram de tu emprendimiento/proyecto y luego da clic derecho encima del QR generado y guarda la imagen.</p>
+                <!-- IFRAME CON EL GENERADOR DE QR -->
+                <iframe src="https://dash.elfsight.com/widget/3a0144bb-26f9-4983-9302-6e03a4deb7c9" width="100%" height="500" style="border:1px solid #ccc; border-radius: 8px;"></iframe> 
+          </div>
+
+          <!--Sellos de advertencia-->
+          <div class="tab-pane fade" id="contenido-sellos" role="tabpanel">
+            <h3 class="mt-3">Sellos de Advertencia en Alimentos - Colombia</h3>
+            <p>Son etiquetas que alertan sobre contenido excesivo de calorías, sodio o azúcares en productos procesados.</p>
+            <p>A continuación selecciona los sellos que apliquen a tu producto:</p>
+          
+            <form id="sellos-form">
+              <div class="row g-4">
+                
+                <div class="col-md-12 d-flex border rounded p-3 align-items-center">
+                  <input class="form-check-input me-3" type="checkbox" id="azucares" name="sello" value="azucares" />
+                  <div class="me-4">
+                    <img src="images/azucares.png" alt="Alto en Azúcares" width="100" />
+                  </div>
+                  <div>
+                    <h5>Alto en Azúcares</h5>
+                    <p>Indica que el producto supera los niveles permitidos de azúcares.</p>
+                    <p><strong>Ejemplo:</strong> Bebidas gaseosas azucaradas.</p>
+                    <p><strong>Límite:</strong> >10g de azúcares libres por 100ml (líquidos) o 100g (sólidos).</p>
+                  </div>
+                </div>
+          
+               
+                <div class="col-md-12 d-flex border rounded p-3 align-items-center">
+                  <input class="form-check-input me-3" type="checkbox" id="sodio" name="sello" value="sodio" />
+                  <div class="me-4">
+                    <img src="images/sodio.png" alt="Alto en Sodio" width="100" />
+                  </div>
+                  <div>
+                    <h5>Alto en Sodio</h5>
+                    <p>Se coloca en productos con alto contenido de sal o sodio.</p>
+                    <p><strong>Ejemplo:</strong> Snacks salados, sopas en polvo.</p>
+                    <p><strong>Límite:</strong> >300mg de sodio por 100g.</p>
+                  </div>
+                </div>
+          
+                
+                <div class="col-md-12 d-flex border rounded p-3 align-items-center">
+                  <input class="form-check-input me-3" type="checkbox" id="grasas" name="sello" value="grasas" />
+                  <div class="me-4">
+                    <img src="images/grasas_sat.png" alt="Alto en Grasas Saturadas" width="100" />
+                  </div>
+                  <div>
+                    <h5>Alto en Grasas Saturadas</h5>
+                    <p>Advertencia para productos con grasas perjudiciales.</p>
+                    <p><strong>Ejemplo:</strong> Papas fritas, pasteles procesados.</p>
+                    <p><strong>Límite:</strong> >4g de grasas saturadas por 100g.</p>
+                  </div>
+                </div>
+                <div class="col-md-12 d-flex border rounded p-3 align-items-center">
+                    <input class="form-check-input me-3" type="checkbox" id="grasas" name="sello" value="grasas" />
+                    <div class="me-4">
+                    <img src="images/trans.png" alt="Alto en Grasas Trans" width="100" />
+                    </div>
+                    <div>
+                    <h5>Alto en Grasas Trans</h5>
+                    <p>Indica que el producto contiene niveles de grasas trans superiores al permitido.</p>
+                    <p><strong>Ejemplo:</strong> Galletas, margarinas.</p>
+                    <p><strong>Límite:</strong> >2g de grasas trans por 100g del producto.</p>
+                    </div>
+                </div>
+        
+                <div class="col-md-12 d-flex border rounded p-3 align-items-center">
+                    <input class="form-check-input me-3" type="checkbox" id="edulcorantes" name="sello" value="edulcorantes" />
+                    <div class="me-4">
+                    <img src="images/edulco.png" alt="Contiene Edulcorantes" width="100" />
+                    </div>
+                    <div>
+                    <h5>Contiene Edulcorantes</h5>
+                    <p>Indica que el producto incluye edulcorantes no calóricos o artificiales.</p>
+                    <p><strong>Ejemplo:</strong> Yogures light, bebidas dietéticas.</p>
+                    <p><strong>Advertencia:</strong> No recomendado para niños.</p>
+                    </div>
+                </div>
+        
+              </div>
+          
+              <div class="text-end mt-4">
+                <button type="button" class="btn btn-primary" onclick="descargarSellos()">Descargar Sellos Seleccionados</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+ 
+<!-- Librerías para crear y guardar ZIP con los sellos -->
+<script src="js/jszip.min.js"></script>
+<script src="js/FileSaver.min.js"></script>
+<script src="js/sellos.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
