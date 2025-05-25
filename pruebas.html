@@ -2,75 +2,98 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Formulario dinámico ExcelJS</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Descarga de Sellos de Advertencia</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- JSZip y FileSaver -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 </head>
 <body>
-  <form id="fichaForm">
-    <div id="campos-container"></div>
-    <button type="submit">Generar Excel</button>
-  </form>
+  <div class="container py-4">
+    <h1 class="mb-4">Selecciona los sellos de advertencia</h1>
+    <form id="sealForm">
+      <div class="row g-3">
+        <!-- Exceso Sodio -->
+        <div class="col-12 col-md-6 form-check">
+          <input class="form-check-input" type="checkbox" value="" id="sodio" data-file="images/exceso_sodio.png">
+          <label class="form-check-label" for="sodio">
+            <img src="images/sodio.png" alt="Exceso Sodio" width="50" class="me-2">
+            Exceso Sodio
+          </label>
+        </div>
+        <!-- Exceso Azúcares -->
+        <div class="col-12 col-md-6 form-check">
+          <input class="form-check-input" type="checkbox" value="" id="azucares" data-file="images/exceso_azucares.png">
+          <label class="form-check-label" for="azucares">
+            <img src="images/azucares.png" alt="Exceso Azúcares" width="50" class="me-2">
+            Exceso Azúcares
+          </label>
+        </div>
+        <!-- Grasas Trans -->
+        <div class="col-12 col-md-6 form-check">
+          <input class="form-check-input" type="checkbox" value="" id="grasasTrans" data-file="images/grasas_trans.png">
+          <label class="form-check-label" for="grasasTrans">
+            <img src="images/trans.png" alt="Grasas Trans" width="50" class="me-2">
+            Grasas Trans
+          </label>
+        </div>
+        <!-- Grasas Saturadas -->
+        <div class="col-12 col-md-6 form-check">
+          <input class="form-check-input" type="checkbox" value="" id="grasasSat" data-file="images/grasas_saturadas.png">
+          <label class="form-check-label" for="grasasSat">
+            <img src="images/grasas_sat.png" alt="Grasas Saturadas" width="50" class="me-2">
+            Grasas Saturadas
+          </label>
+        </div>
+        <!-- Contiene Edulcorantes -->
+        <div class="col-12 col-md-6 form-check">
+          <input class="form-check-input" type="checkbox" value="" id="edulcorantes" data-file="images/contiene_edulcorantes.png">
+          <label class="form-check-label" for="edulcorantes">
+            <img src="images/edulco.png" alt="Contiene Edulcorantes" width="50" class="me-2">
+            Contiene Edulcorantes
+          </label>
+        </div>
+      </div>
+      <button type="button" id="downloadBtn" class="btn btn-primary mt-4">Descargar sellos seleccionados</button>
+    </form>
+  </div>
 
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const campos = [ 
-      { nombre: "Nombre del producto", celdaEtiqueta: "A1", rangoValor: "D1:H1" },
-      { nombre: "Nombre Comercial", celdaEtiqueta: "A2", rangoValor: "D2:H2" }
-    ];
+    document.getElementById('downloadBtn').addEventListener('click', async () => {
+      const zip = new JSZip();
+      const checkboxes = document.querySelectorAll('#sealForm .form-check-input');
+      const selected = Array.from(checkboxes).filter(cb => cb.checked);
 
-    const container = document.getElementById('campos-container');
-
-    // Generar inputs dinámicamente
-    campos.forEach(campo => {
-      const id = campo.nombre.replace(/\s+/g, "_");
-      const div = document.createElement('div');
-      div.innerHTML = `
-        <label>${campo.nombre}</label><br>
-        <input type="text" name="${campo.nombre}" id="${id}"><br><br>
-      `;
-      container.appendChild(div);
-    });
-
-    document.getElementById('fichaForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      const formData = new FormData(e.target);
-      const valores = Object.fromEntries(formData.entries());
+      if (!selected.length) {
+        alert('Por favor, selecciona al menos un sello.');
+        return;
+      }
 
       try {
-        const workbook = new ExcelJS.Workbook();
-        const worksheet = workbook.addWorksheet('Ficha Técnica');
-
-        campos.forEach(campo => {
-          // Escribir etiqueta
-          worksheet.getCell(campo.celdaEtiqueta).value = campo.nombre;
-
-          // Obtener valor del formulario
-          const valor = valores[campo.nombre] || '';
-
-          // Rango para escribir valor
-          const [inicio, fin] = campo.rangoValor.split(":");
-
-          // Fusionar si aplica
-          if (fin && inicio !== fin) {
-            worksheet.mergeCells(`${inicio}:${fin}`);
-          }
-
-          // Escribir el valor en la celda inicial
-          worksheet.getCell(inicio).value = valor;
-          worksheet.getCell(inicio).alignment = { vertical: 'middle', horizontal: 'left' };
+        // Agregar cada imagen seleccionada al zip
+        const fetchPromises = selected.map(cb => {
+          const url = cb.dataset.file;
+          const filename = url.split('/').pop();
+          return fetch(url)
+            .then(res => {
+              if (!res.ok) throw new Error(`Error al cargar ${url}`);
+              return res.blob();
+            })
+            .then(blob => zip.file(filename, blob));
         });
 
-        // Generar y descargar Excel
-        const buffer = await workbook.xlsx.writeBuffer();
-        const blob = new Blob([buffer], {
-          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        });
-        saveAs(blob, "Ficha_Tecnica.xlsx");
+        await Promise.all(fetchPromises);
 
-      } catch (error) {
-        console.error("Error al generar el Excel:", error);
-        alert("Ocurrió un error al generar la ficha técnica.");
+        // Generar y descargar el zip
+        const content = await zip.generateAsync({ type: 'blob' });
+        saveAs(content, 'sellos_advertencia.zip');
+      } catch (err) {
+        console.error(err);
+        alert('Hubo un error al procesar la descarga.');
       }
     });
   </script>
