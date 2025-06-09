@@ -79,7 +79,7 @@ campos.forEach(campo => {
   div.className = "col-md-6 mb-3";
   div.innerHTML = `
     <label for="${id}" class="form-label">${campo.nombre}</label>
-    <input type="text" class="form-control" name="${campo.nombre}" id="${id}">
+    <textarea class="form-control" name="${campo.nombre}" id="${id}">
   `;
   container.appendChild(div);
 });
